@@ -2,7 +2,7 @@
 Adapter to make requests to 17track API
 """
 import json
-from typing import Dict, NamedTuple
+from typing import Dict, NamedTuple, List, Union
 
 import requests
 
@@ -118,6 +118,18 @@ class Track17Adapter:
     def __init__(self):
         self.api_client = self.api_client_class()
 
+    @staticmethod
+    def _prepare_numbers(*tracking_numbers: Union[Dict, str]) -> List:
+        numbers = []
+        for number in tracking_numbers:
+            if isinstance(number, dict) and all(key in number for key in ['number', 'carrier']):
+                numbers.append(number)
+            elif isinstance(number, str):
+                numbers.append({
+                    "number": number
+                })
+        return numbers
+
     def register(self, *tracking_numbers: str) -> Response:
         """
         40 tracking numbers are allowed to submit for registration per time for the interface.
@@ -144,11 +156,7 @@ class Track17Adapter:
                 }
             }
         """
-        data = [
-            {
-                "number": number
-            } for number in tracking_numbers
-        ]
+        data = self._prepare_numbers(*tracking_numbers)
         data = json.dumps(data)
         response = self.api_client.post(
             'register',
@@ -160,11 +168,7 @@ class Track17Adapter:
         """
         40 tracking numbers are allowed to submit per time for the interface.
         """
-        data = [
-            {
-                "number": number
-            } for number in tracking_numbers
-        ]
+        data = self._prepare_numbers(*tracking_numbers)
         data = json.dumps(data)
         response = self.api_client.post(
             'stoptrack',
@@ -176,11 +180,7 @@ class Track17Adapter:
         """
         40 tracking numbers are allowed to submit per time for the interface.
         """
-        data = [
-            {
-                "number": number
-            } for number in tracking_numbers
-        ]
+        data = self._prepare_numbers(*tracking_numbers)
         data = json.dumps(data)
         response = self.api_client.post(
             'retrack',
@@ -192,11 +192,7 @@ class Track17Adapter:
         """
         40 tracking numbers are allowed to submit per time for the interface.
         """
-        data = [
-            {
-                "number": number
-            } for number in tracking_numbers
-        ]
+        data = self._prepare_numbers(*tracking_numbers)
         data = json.dumps(data)
         response = self.api_client.post(
             'gettrackinfo',

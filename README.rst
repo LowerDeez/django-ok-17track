@@ -2,8 +2,7 @@
 django-ok-17track |PyPI version|
 ================================
 
-|Build Status| |Requirements Status| |Python Versions| |PyPI downloads| |license|
-|Project Status|
+|Build Status| |Python Versions| |PyPI downloads| |license| |Project Status|
 
 django-17track is an unofficial 17track.com API wrapper for Django.
 
@@ -102,7 +101,7 @@ Or can use 17track adapter directly:
 
 .. |PyPI version| image:: https://badge.fury.io/py/django-ok-17track.svg
    :target: https://badge.fury.io/py/django-ok-17track
-.. |Build Status| image:: https://travis-ci.org/LowerDeez/ok-17track.svg?branch=master
+.. |Build Status| image:: https://travis-ci.org/LowerDeez/django-ok-17track.svg?branch=master
    :target: https://travis-ci.org/LowerDeez/django-ok-17track
    :alt: Build status
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/django-ok-17track.svg
@@ -113,7 +112,6 @@ Or can use 17track adapter directly:
    :target: https://github.com/LowerDeez/django-ok-17track/blob/master/LICENSE
 .. |PyPI downloads| image:: https://img.shields.io/pypi/dm/django-ok-17track.svg
    :alt: PyPI downloads
-.. |Requirements Status| image:: https://requires.io/github/LowerDeez/django-ok-17track/requirements.svg?branch=master
 .. |Project Status| image:: https://img.shields.io/pypi/status/django-ok-17track.svg
    :target: https://pypi.org/project/django-ok-17track/  
    :alt: Project Status
