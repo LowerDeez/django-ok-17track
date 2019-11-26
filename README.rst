@@ -1,6 +1,6 @@
-============================
+================================
 django-ok-17track |PyPI version|
-============================
+================================
 
 |Build Status| |Requirements Status| |Python Versions| |PyPI downloads| |license|
 |Project Status|
@@ -41,9 +41,9 @@ Available settings
 
 ``TRACK17_API_KEY_FUNCTION`` - Custom function to return API key, if you want to store it outside the Django settings.
 
-``TRACK17_COUNTRIES_URL`` - Url to grab countries. Uses `https://www.17track.net/en/apicountry`_
+``TRACK17_COUNTRIES_URL`` - Url to grab countries. Uses `https://www.17track.net/en/apicountry`_.
 
-``TRACK17_CARRIERS_URL`` - Url to grab carriers. Uses `https://www.17track.net/en/apicarrier`_
+``TRACK17_CARRIERS_URL`` - Url to grab carriers. Uses `https://www.17track.net/en/apicarrier`_.
 
 
 Basic example to use:
@@ -52,51 +52,52 @@ Basic example to use:
 How to get all countries and carriers:
 --------------------------------------
 
-.. code:: shell
+    .. code:: shell
 
-    python managet.py populate_carriers
+        python managet.py populate_carriers
     
 
 How to register tracking number and get it's info:
-------------------------------------------------------
+--------------------------------------------------
 
-.. code:: python
-    from rest_framework import serializers
-    from track17.services import register_track, get_track_info, get_track_info_as_packages
-    from apps.track17.exceptions import DateProcessingError
+    .. code:: python
+
+        from rest_framework import serializers
+        from track17.services import register_track, get_track_info, get_track_info_as_packages
+        from apps.track17.exceptions import DateProcessingError
 
 
-	
-    # try to register tracking number at 17track API
-    try:
-	register_track('tracking_number')
-    except DateProcessingError as exc:
-	raise serializers.ValidationError(str(exc))    
-    
-    # try to fetch an actual info about a tracking number
-    try:
-        response: Dict = get_track_info('tracking_number')
-    except DateProcessingError as exc:
-        raise serializers.ValidationError(str(exc))
+        
+        # try to register tracking number at 17track API
+        try:
+        register_track('tracking_number')
+        except DateProcessingError as exc:
+        raise serializers.ValidationError(str(exc))    
+        
+        # try to fetch an actual info about a tracking number
+        try:
+            response: Dict = get_track_info('tracking_number')
+        except DateProcessingError as exc:
+            raise serializers.ValidationError(str(exc))
 
-    accepted_packages = response.get('accepted', [])
+        accepted_packages = response.get('accepted', [])
 
-    # return packages info as a list of `PackageEntity` (dataclass instance) objects
-    # in a readable way with a represantion of carriers and countries as Django model instances
-    packages = get_track_info_as_packages(accepted)
+        # return packages info as a list of `PackageEntity` (dataclass instance) objects
+        # in a readable way with a represantion of carriers and countries as Django model instances
+        packages = get_track_info_as_packages(accepted)
 
 
 Or can use 17track adapter directly:
----------------------------------
+------------------------------------
 
-.. code:: python
+    .. code:: python
 
-    from track17.track17 import Track17Adapter
+        from track17.track17 import Track17Adapter
 
-    
-    track17 = Track17Adapter()
-    response = track17.register('number1', 'number2')
-    response = track17.get_track_info('number1', 'number2')	
+        
+        track17 = Track17Adapter()
+        response = track17.register('number1', 'number2')
+        response = track17.get_track_info('number1', 'number2')	
     
 
 .. |PyPI version| image:: https://badge.fury.io/py/django-ok-17track.svg
@@ -118,4 +119,4 @@ Or can use 17track adapter directly:
    :alt: Project Status
 
 .. _https://www.17track.net/en/apicountry: https://www.17track.net/en/apicountry
-.. _https://www.17track.net/en/apicountry: https://www.17track.net/en/apicarrier
+.. _https://www.17track.net/en/apicarrier: https://www.17track.net/en/apicarrier
