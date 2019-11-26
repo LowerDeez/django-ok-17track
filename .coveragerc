@@ -1,0 +1,19 @@
+[run]
+source = track17
+branch = 1
+
+[report]
+omit = 
+    track17/migrations/*
+    track17/admin/*
+    track17/*/__init__.py
+    .venv/*
+    env/*
+    setup.py
+include = track17/*
+ignore_errors = True
+exclude_lines =
+    if self.debug:
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
