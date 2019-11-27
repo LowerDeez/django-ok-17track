@@ -41,7 +41,7 @@ def get_default_country():
 @dataclass
 class PackageEntity:
     """
-    Package object to store all important data
+    Package object to store all important data about tracking number
     """
     tracking_number: str
     first_carrier: str = ""

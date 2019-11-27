@@ -78,7 +78,7 @@ class Track17Client:
     def post(
         self,
         path: str,
-        data: Dict = None,
+        data: Union[Dict, str] = None,
         headers: Dict = None,
     ):
         """
@@ -87,7 +87,7 @@ class Track17Client:
 
         Args:
             path (str): Corresponding relative path to send request.
-            data (Dict, optional): Params to send.
+            data ([Dict, str], optional): Dictionary, list of tuples, bytes, or file-like object to send.
             headers (Dict, optional): Request headers.
 
         Returns:
@@ -119,7 +119,7 @@ class Track17Adapter:
         self.api_client = self.api_client_class()
 
     @staticmethod
-    def _prepare_numbers(*tracking_numbers: Union[Dict, str]) -> List:
+    def _prepare_numbers(*tracking_numbers: Union[Dict, str]) -> str:
         numbers = []
         for number in tracking_numbers:
             if isinstance(number, dict) and all(key in number for key in ['number', 'carrier']):
@@ -128,6 +128,7 @@ class Track17Adapter:
                 numbers.append({
                     "number": number
                 })
+        numbers = json.dumps(numbers)
         return numbers
 
     def register(self, *tracking_numbers: str) -> Response:
@@ -157,7 +158,6 @@ class Track17Adapter:
             }
         """
         data = self._prepare_numbers(*tracking_numbers)
-        data = json.dumps(data)
         response = self.api_client.post(
             'register',
             data
@@ -169,7 +169,6 @@ class Track17Adapter:
         40 tracking numbers are allowed to submit per time for the interface.
         """
         data = self._prepare_numbers(*tracking_numbers)
-        data = json.dumps(data)
         response = self.api_client.post(
             'stoptrack',
             data
@@ -181,7 +180,6 @@ class Track17Adapter:
         40 tracking numbers are allowed to submit per time for the interface.
         """
         data = self._prepare_numbers(*tracking_numbers)
-        data = json.dumps(data)
         response = self.api_client.post(
             'retrack',
             data
@@ -193,7 +191,6 @@ class Track17Adapter:
         40 tracking numbers are allowed to submit per time for the interface.
         """
         data = self._prepare_numbers(*tracking_numbers)
-        data = json.dumps(data)
         response = self.api_client.post(
             'gettrackinfo',
             data

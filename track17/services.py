@@ -162,7 +162,7 @@ def get_track_info(*tracking_numbers: str) -> Dict[str, List]:
 
 def get_track_info_as_packages(data: List) -> List[PackageEntity]:
     """
-    Return `accepted` tracking numbers as a list of `PackageEntity` instances.
+    Return `accepted` tracking numbers as a list of `PackageEntity` instances
 
     Return:
         List of PackageEntity
