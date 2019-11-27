@@ -115,7 +115,7 @@ Or can use 17track adapter directly:
 .. |Project Status| image:: https://img.shields.io/pypi/status/django-ok-17track.svg
    :target: https://pypi.org/project/django-ok-17track/  
 .. |Upload Python Package| image:: https://github.com/LowerDeez/django-ok-17track/workflows/Upload%20Python%20Package/badge.svg
-
+   :target: https://github.com/LowerDeez/django-ok-17track
    :alt: Project Status
 
 .. _https://www.17track.net/en/apicountry: https://www.17track.net/en/apicountry
