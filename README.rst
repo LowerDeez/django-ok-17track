@@ -66,12 +66,11 @@ How to register tracking number and get it's info:
         from apps.track17.exceptions import DateProcessingError
 
 
-        
         # try to register tracking number at 17track API
         try:
-        register_track('tracking_number')
+            register_track('tracking_number')
         except DateProcessingError as exc:
-        raise serializers.ValidationError(str(exc))    
+            raise serializers.ValidationError(str(exc))    
         
         # try to fetch an actual info about a tracking number
         try:
