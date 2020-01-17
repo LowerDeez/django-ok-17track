@@ -60,11 +60,15 @@ How to register tracking number and get it's info:
 --------------------------------------------------
 
     .. code:: python
-
+        from typing import List, TYPE_CHECKING
+        
         from rest_framework import serializers
         from track17.services import register_track, get_track_info, get_track_info_as_packages
-        from apps.track17.exceptions import DateProcessingError
-
+        from track17.exceptions import DateProcessingError
+        
+        if TYPE_CHECKING:
+            from track17.entity import PackageEntity
+        
 
         # try to register tracking number at 17track API
         try:
@@ -82,7 +86,7 @@ How to register tracking number and get it's info:
 
         # return packages info as a list of `PackageEntity` (dataclass instance) objects
         # in a readable way with a represantion of carriers and countries as Django model instances
-        packages = get_track_info_as_packages(accepted)
+        packages: List['PackageEntity'] = get_track_info_as_packages(accepted)
 
 
 Or can use 17track adapter directly:
