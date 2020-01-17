@@ -2,7 +2,7 @@
 django-ok-17track |PyPI version|
 ================================
 
-|Build Status| |Upload Python Package| |Python Versions| |PyPI downloads| |license| |Project Status|
+|Build Status| |Code Health| |Upload Python Package| |Python Versions| |PyPI downloads| |license| |Project Status|
 
 django-17track is an unofficial 17track.com API wrapper for Django.
 
@@ -103,6 +103,9 @@ Or can use 17track adapter directly:
 .. |Build Status| image:: https://travis-ci.org/LowerDeez/django-ok-17track.svg?branch=master
    :target: https://travis-ci.org/LowerDeez/django-ok-17track
    :alt: Build status
+.. |Code Health| image:: https://api.codacy.com/project/badge/Grade/8cc48189b13f48c7a04eccd37d4f52d9
+   :target: https://www.codacy.com/app/LowerDeez/django-ok-17track
+   :alt: Code health
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/django-ok-17track.svg
    :target: https://pypi.org/project/django-ok-17track/
    :alt: Python versions
